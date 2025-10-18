@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Card — Simple Web Card</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <article class="card" role="article">
+    <div class="hero">
+      <div class="avatar">
+            <img src="My.jpg" alt="Email Icon" style="width:90px; height:95px;">
+      </div>
+      <div style="margin-left:12px">
+        <h1 id="name">Mahesh Nadun</h1>
+        <p class="title" id="role">Student</p>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="info">
+        <div class="row">
+          <div class="icon">
+                <img src="2.jpg" alt="Email Icon" style="width:24px; height:24px;">
+          </div>
+          <div class="contact" id="location">Anuradapura, Sri Lanka</div>
+        </div>
+
+        <div class="row">
+          <div class="icon">
+                <img src="1.jpg" alt="Email Icon" style="width:24px; height:24px;">
+          </div>
+          <div class="contact" id="email">mahesnadunkumara2004@gmail.com</div>
+        </div>
+
+        <div class="row">
+          <div class="icon">
+                <img src="3.jpg" alt="Email Icon" style="width:24px; height:24px;">
+          </div>
+          <div class="contact" id="phone">+94 70 34 44 282</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" onclick="callMe()">call Me</button>
+        <button class="btn btn-light" onclick="downloadVCard()">Download vCard</button>
+      </div>
+
+      <div class="meta">
+        <div>Simple card </div>
+      </div>
+    </div>
+  </article>
+<script>
+  // Opens default email client
+  function callMe() {
+    window.location.href = "tel:+94703444282";
+  }
+
+  // Downloads vCard file
+  function downloadVCard() {
+    const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Mahesh Nadun
+TITLE:Student
+TEL;TYPE=cell:+94703444282
+EMAIL:mahesnadunkumara2004@gmail.com
+ADR:;;Anuradapura,Sri Lanka
+END:VCARD`;
+
+    const blob = new Blob([vCardData], { type: 'text/vcard' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'MaheshNadun.vcf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+</script>
+
+</body>
+</html>
